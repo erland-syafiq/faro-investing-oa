@@ -9,7 +9,7 @@ export default {
       colors: {
         'primary': '#f95738',
         'secondary': '#ee964b',
-        'bg-primary': '#faf0ca'
+        'base': '#faf0ca'
       }
     },
   },
