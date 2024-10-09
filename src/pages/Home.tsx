@@ -27,14 +27,16 @@ function Home() {
     initialValues,
     validate,
     onSubmit: ({username, password}:LoginFormValues) => {
-      console.log("Hello");
       const authService = AuthService.Instance;
       try {
         authService.login(username, password);
         navigate("/assets");
-        console.log("redirecting...");
       }
       catch (e) {
+        if (!(e instanceof Error)) {
+          setSubmissionError("An unknown error occurred");
+          return;
+        }
         setSubmissionError(e.message);
       }
     },
