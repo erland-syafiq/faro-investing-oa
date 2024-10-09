@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import stockData from '../assets/stocks.json';
 import { useNavigate } from 'react-router-dom';
 import AuthService from '../services/AuthService';
+import SortButton from '../components/SortButton';
 
 interface Stock {
   stockName: string;
@@ -16,7 +17,7 @@ const Assets: React.FC = () => {
   const [filterName, setFilterName] = useState('');
   const [filterIndustry, setFilterIndustry] = useState('');
   const navigate = useNavigate();
-  
+
   const authService = AuthService.Instance;
 
   if (!authService.isAuthorized()) 
@@ -49,6 +50,8 @@ const Assets: React.FC = () => {
     setSortConfig({ key, direction });
   };
 
+  
+
   // Filter stocks based on the input
   useEffect(() => {
     const filteredData = stockData.filter(
@@ -59,66 +62,67 @@ const Assets: React.FC = () => {
     setData(filteredData);
   }, [filterName, filterIndustry]);
 
+  
+
   return (
-    <div className="p-6">
-      <h1 className="text-4xl font-bold mb-4">Assets</h1>
+    <div className="lg:p-8 p-6 bg-base">
+      <div className='max-w-6xl mx-auto'>
+        <div className="bg-primary h-3 w-24 mb-6"></div>
+        <h1 className="text-6xl mb-4 font-raleway">Assets</h1>
 
-      <div className="mb-4">
-        <label className="mr-2">Filter by Stock Name:</label>
-        <input
-          type="text"
-          value={filterName}
-          onChange={(e) => setFilterName(e.target.value)}
-          className="p-2 border border-gray-300 rounded"
-        />
-      </div>
+        <div className="mb-4">
+          <label className="mr-2">Filter by Stock Name:</label>
+          <input
+            type="text"
+            value={filterName}
+            onChange={(e) => setFilterName(e.target.value)}
+            className="p-2 border border-gray-300 rounded"
+            />
+        </div>
 
-      <div className="mb-4">
-        <label className="mr-2">Filter by Industry:</label>
-        <input
-          type="text"
-          value={filterIndustry}
-          onChange={(e) => setFilterIndustry(e.target.value)}
-          className="p-2 border border-gray-300 rounded"
-        />
-      </div>
+        <div className="mb-4">
+          <label className="mr-2">Filter by Industry:</label>
+          <input
+            type="text"
+            value={filterIndustry}
+            onChange={(e) => setFilterIndustry(e.target.value)}
+            className="p-2 border border-gray-300 rounded"
+            />
+        </div>
 
-      <table className="min-w-full bg-white border-collapse border border-gray-200">
-        <thead>
-          <tr>
-            <th
-              onClick={() => requestSort('stockName')}
-              className="p-4 border-b cursor-pointer">
-              Stock Name
-            </th>
-            <th
-              onClick={() => requestSort('industry')}
-              className="p-4 border-b cursor-pointer">
-              Industry
-            </th>
-            <th
-              onClick={() => requestSort('peRatio')}
-              className="p-4 border-b cursor-pointer">
-              P/E Ratio
-            </th>
-            <th
-              onClick={() => requestSort('price')}
-              className="p-4 border-b cursor-pointer">
-              Price
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedData.map((stock) => (
-            <tr key={stock.stockName}>
-              <td className="p-4 border-b">{stock.stockName}</td>
-              <td className="p-4 border-b">{stock.industry}</td>
-              <td className="p-4 border-b">{stock.peRatio}</td>
-              <td className="p-4 border-b">${stock.price.toFixed(2)}</td>
+        <table className="min-w-full bg-white border-collapse border border-gray-200 mt-8">
+          <thead>
+            <tr className='bg-primary font-raleway text-white'>
+              <th className="p-4 border-b text-left">
+                Stock Name
+                <SortButton onClick={() => requestSort('stockName')} direction={sortConfig?.key === 'stockName' ? sortConfig.direction : null} />
+              </th>
+              <th className="p-4 border-b text-left">
+                Industry
+                <SortButton onClick={() => requestSort('industry')} direction={sortConfig?.key === 'industry' ? sortConfig.direction : null} />
+              </th>
+              <th className="p-4 border-b text-left">
+                P/E Ratio
+                <SortButton onClick={() => requestSort('peRatio')} direction={sortConfig?.key === 'peRatio' ? sortConfig.direction : null} />
+              </th>
+              <th className="p-4 border-b text-left">
+                Price
+                <SortButton onClick={() => requestSort('price')} direction={sortConfig?.key === 'price' ? sortConfig.direction : null} />
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {sortedData.map((stock) => (
+              <tr key={stock.stockName}>
+                <td className="p-4 border-b">{stock.stockName}</td>
+                <td className="p-4 border-b">{stock.industry}</td>
+                <td className="p-4 border-b">{stock.peRatio}</td>
+                <td className="p-4 border-b">${stock.price.toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
