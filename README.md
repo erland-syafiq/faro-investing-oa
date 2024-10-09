@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+# Faro Investing OA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This is a simple stock management application for Faro Investing OA that features a login page and an assets page. Users can log in to view and manage stock data.
 
-Currently, two official plugins are available:
+## Features
+- **Login Page**: Users can log in with the following credentials:
+  - **Username**: admin
+  - **Password**: password
+- **Assets Page**: After logging in, users can access the assets page to view stock information.
+- **Sorting**: Users can sort stocks by their names, industries, P/E ratios, and prices.
+- **Filtering**: Users can filter stocks by stock name and industry.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Hosting
+The application is hosted on AWS using CloudFront for content delivery and an S3 storage bucket for static assets.
 
-## Expanding the ESLint configuration
+## Getting Started
+To get started with the project, clone the repository and install the dependencies. Navigate to the project directory and run the application locally.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+## Conclusion
+This application serves as a basic framework for managing stock data with user authentication for Faro Investing OA. Enjoy exploring the features!
