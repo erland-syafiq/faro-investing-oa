@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from '../hooks/useForm.tsx'; // assuming you have the useForm hook
+import AuthService from '../services/AuthService.tsx';
+import { redirect, useNavigate } from 'react-router-dom';
 
 interface LoginFormValues {
   username: string;
   password: string;
 }
 
+
 function Home() {
   const initialValues: LoginFormValues = { username: '', password: '' };
+
+
+  const [submissionError, setSubmissionError] = useState("");
+  const navigate = useNavigate();
 
   const validate = (values: LoginFormValues) => {
     const errors: Partial<LoginFormValues> = {};
@@ -19,9 +26,17 @@ function Home() {
   const { values, errors, handleChange, handleSubmit } = useForm<LoginFormValues>({
     initialValues,
     validate,
-    onSubmit: (values) => {
-      console.log('Login submitted:', values);
-      // Add login logic here (e.g., API call)
+    onSubmit: ({username, password}:LoginFormValues) => {
+      console.log("Hello");
+      const authService = AuthService.Instance;
+      try {
+        authService.login(username, password);
+        navigate("/assets");
+        console.log("redirecting...");
+      }
+      catch (e) {
+        setSubmissionError(e.message);
+      }
     },
   });
 
@@ -59,6 +74,7 @@ function Home() {
               value="Login"
               className="w-full p-2 bg-primary text-white font-semibold rounded cursor-pointer"
             />
+            {submissionError && <p className="text-red-500 text-sm">{submissionError}</p>}
           </div>
         </form>
       </div>
