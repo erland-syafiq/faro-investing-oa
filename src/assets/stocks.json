@@ -1,0 +1,63 @@
+[
+    {
+      "stockName": "Tesla",
+      "industry": "Automobile",
+      "peRatio": 75.13,
+      "price": 860.50
+    },
+    {
+      "stockName": "Apple",
+      "industry": "Technology",
+      "peRatio": 28.50,
+      "price": 145.30
+    },
+    {
+      "stockName": "Amazon",
+      "industry": "E-commerce",
+      "peRatio": 59.40,
+      "price": 3205.35
+    },
+    {
+      "stockName": "Microsoft",
+      "industry": "Technology",
+      "peRatio": 37.95,
+      "price": 289.67
+    },
+    {
+      "stockName": "Coca-Cola",
+      "industry": "Consumer Goods",
+      "peRatio": 28.10,
+      "price": 58.79
+    },
+    {
+      "stockName": "NVIDIA",
+      "industry": "Semiconductors",
+      "peRatio": 90.23,
+      "price": 511.52
+    },
+    {
+      "stockName": "Johnson & Johnson",
+      "industry": "Healthcare",
+      "peRatio": 24.50,
+      "price": 164.83
+    },
+    {
+      "stockName": "Pfizer",
+      "industry": "Pharmaceuticals",
+      "peRatio": 12.30,
+      "price": 41.96
+    },
+    {
+      "stockName": "Visa",
+      "industry": "Financial Services",
+      "peRatio": 30.15,
+      "price": 231.85
+    },
+    {
+      "stockName": "Boeing",
+      "industry": "Aerospace",
+      "peRatio": 85.45,
+      "price": 210.25
+    }
+  ]
+  
