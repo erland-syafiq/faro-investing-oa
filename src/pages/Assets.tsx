@@ -13,16 +13,17 @@ interface Stock {
 
 const Assets: React.FC = () => {
   const [data, setData] = useState<Stock[]>(stockData);
-  const [sortConfig, setSortConfig] = useState<{ key: keyof Stock; direction: 'ascending' | 'descending' } | null>(null);
+  const [sortConfig, setSortConfig] = useState<{
+    key: keyof Stock;
+    direction: 'ascending' | 'descending';
+  } | null>(null);
   const [filterName, setFilterName] = useState('');
   const [filterIndustry, setFilterIndustry] = useState('');
   const navigate = useNavigate();
 
   const authService = AuthService.Instance;
 
-  if (!authService.isAuthorized()) 
-    navigate("/");
-
+  if (!authService.isAuthorized()) navigate('/');
 
   // Sort the data based on the sortConfig
   const sortedData = React.useMemo(() => {
@@ -44,13 +45,15 @@ const Assets: React.FC = () => {
   // Handle sorting
   const requestSort = (key: keyof Stock) => {
     let direction: 'ascending' | 'descending' = 'ascending';
-    if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === 'ascending'
+    ) {
       direction = 'descending';
     }
     setSortConfig({ key, direction });
   };
-
-  
 
   // Filter stocks based on the input
   useEffect(() => {
@@ -62,11 +65,9 @@ const Assets: React.FC = () => {
     setData(filteredData);
   }, [filterName, filterIndustry]);
 
-  
-
   return (
     <div className="lg:p-8 p-6 bg-base">
-      <div className='max-w-6xl mx-auto'>
+      <div className="max-w-6xl mx-auto">
         <div className="bg-primary h-3 w-24 mb-6"></div>
         <h1 className="text-6xl mb-4 font-raleway">Assets</h1>
 
@@ -77,7 +78,7 @@ const Assets: React.FC = () => {
             value={filterName}
             onChange={(e) => setFilterName(e.target.value)}
             className="p-2 border border-gray-300 rounded"
-            />
+          />
         </div>
 
         <div className="mb-4">
@@ -87,27 +88,49 @@ const Assets: React.FC = () => {
             value={filterIndustry}
             onChange={(e) => setFilterIndustry(e.target.value)}
             className="p-2 border border-gray-300 rounded"
-            />
+          />
         </div>
 
         <table className="min-w-full bg-white border-collapse border border-gray-200 mt-8">
           <thead>
-            <tr className='bg-primary font-raleway text-white'>
+            <tr className="bg-primary font-raleway text-white">
               <th className="p-4 border-b text-left">
                 Stock Name
-                <SortButton onClick={() => requestSort('stockName')} direction={sortConfig?.key === 'stockName' ? sortConfig.direction : null} />
+                <SortButton
+                  onClick={() => requestSort('stockName')}
+                  direction={
+                    sortConfig?.key === 'stockName'
+                      ? sortConfig.direction
+                      : null
+                  }
+                />
               </th>
               <th className="p-4 border-b text-left">
                 Industry
-                <SortButton onClick={() => requestSort('industry')} direction={sortConfig?.key === 'industry' ? sortConfig.direction : null} />
+                <SortButton
+                  onClick={() => requestSort('industry')}
+                  direction={
+                    sortConfig?.key === 'industry' ? sortConfig.direction : null
+                  }
+                />
               </th>
               <th className="p-4 border-b text-left">
                 P/E Ratio
-                <SortButton onClick={() => requestSort('peRatio')} direction={sortConfig?.key === 'peRatio' ? sortConfig.direction : null} />
+                <SortButton
+                  onClick={() => requestSort('peRatio')}
+                  direction={
+                    sortConfig?.key === 'peRatio' ? sortConfig.direction : null
+                  }
+                />
               </th>
               <th className="p-4 border-b text-left">
                 Price
-                <SortButton onClick={() => requestSort('price')} direction={sortConfig?.key === 'price' ? sortConfig.direction : null} />
+                <SortButton
+                  onClick={() => requestSort('price')}
+                  direction={
+                    sortConfig?.key === 'price' ? sortConfig.direction : null
+                  }
+                />
               </th>
             </tr>
           </thead>

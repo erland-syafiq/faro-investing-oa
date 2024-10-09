@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
@@ -11,11 +8,11 @@ export default {
         roboto: ['Roboto', 'sans-serif'],
       },
       colors: {
-        'primary': '#f95738',
-        'secondary': '#ee964b',
-        'base': '#faf0ca'
-      }
+        primary: '#f95738',
+        secondary: '#ee964b',
+        base: '#faf0ca',
+      },
     },
   },
   plugins: [],
-}
+};

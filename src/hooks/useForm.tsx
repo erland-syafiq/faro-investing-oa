@@ -17,7 +17,9 @@ export function useForm<T extends Record<string, any>>({
   const [errors, setErrors] = useState<FormErrors<T>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setValues({
       ...values,
@@ -33,7 +35,7 @@ export function useForm<T extends Record<string, any>>({
       setErrors(validationErrors);
 
       if (Object.keys(validationErrors).length > 0) {
-        return; // Stop submission if there are validation errors
+        return; 
       }
     }
 

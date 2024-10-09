@@ -8,12 +8,10 @@ interface LoginFormValues {
   password: string;
 }
 
-
 function Home() {
   const initialValues: LoginFormValues = { username: '', password: '' };
 
-
-  const [submissionError, setSubmissionError] = useState("");
+  const [submissionError, setSubmissionError] = useState('');
   const navigate = useNavigate();
 
   const validate = (values: LoginFormValues) => {
@@ -23,24 +21,24 @@ function Home() {
     return errors;
   };
 
-  const { values, errors, handleChange, handleSubmit } = useForm<LoginFormValues>({
-    initialValues,
-    validate,
-    onSubmit: ({username, password}:LoginFormValues) => {
-      const authService = AuthService.Instance;
-      try {
-        authService.login(username, password);
-        navigate("/assets");
-      }
-      catch (e) {
-        if (!(e instanceof Error)) {
-          setSubmissionError("An unknown error occurred");
-          return;
+  const { values, errors, handleChange, handleSubmit } =
+    useForm<LoginFormValues>({
+      initialValues,
+      validate,
+      onSubmit: ({ username, password }: LoginFormValues) => {
+        const authService = AuthService.Instance;
+        try {
+          authService.login(username, password);
+          navigate('/assets');
+        } catch (e) {
+          if (!(e instanceof Error)) {
+            setSubmissionError('An unknown error occurred');
+            return;
+          }
+          setSubmissionError(e.message);
         }
-        setSubmissionError(e.message);
-      }
-    },
-  });
+      },
+    });
 
   return (
     <div className="bg-base w-screen min-h-screen flex items-center justify-center">
@@ -57,7 +55,9 @@ function Home() {
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded"
             />
-            {errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
+            {errors.username && (
+              <p className="text-red-500 text-sm">{errors.username}</p>
+            )}
           </div>
           <div>
             <label className="block text-sm font-medium">Password</label>
@@ -68,7 +68,9 @@ function Home() {
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded"
             />
-            {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password}</p>
+            )}
           </div>
           <div>
             <input
@@ -76,7 +78,9 @@ function Home() {
               value="Login"
               className="w-full p-2 bg-primary text-white font-semibold rounded cursor-pointer"
             />
-            {submissionError && <p className="text-red-500 text-sm">{submissionError}</p>}
+            {submissionError && (
+              <p className="text-red-500 text-sm">{submissionError}</p>
+            )}
           </div>
         </form>
       </div>
