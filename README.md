@@ -11,9 +11,6 @@ This is a simple stock management application for Faro Investing OA that feature
 - **Sorting**: Users can sort stocks by their names, industries, P/E ratios, and prices.
 - **Filtering**: Users can filter stocks by stock name and industry.
 
-## Hosting
-The application is hosted on AWS using CloudFront for content delivery and an S3 storage bucket for static assets.
-
 ## Getting Started
 To get started with the project, clone the repository and install the dependencies. Navigate to the project directory and run the application locally.
 
