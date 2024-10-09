@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useForm } from '../hooks/useForm.tsx'; // assuming you have the useForm hook
+import { useState } from 'react';
+import { useForm } from '../hooks/useForm.tsx';
 import AuthService from '../services/AuthService.tsx';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginFormValues {
   username: string;
