@@ -1,7 +1,7 @@
 # Faro Investing OA
 
 ## Overview
-This is a simple stock management application for Faro Investing OA that features a login page and an assets page. Users can log in to view and manage stock data.
+This is a simple stock management application for Faro Investing OA that features a login page and an assets page. Users can log in to view and manage stock data. It is built using React and Tailwind CSS. 
 
 ## Features
 - **Login Page**: Users can log in with the following credentials:
